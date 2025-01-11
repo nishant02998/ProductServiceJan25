@@ -5,7 +5,6 @@ import dev.nishant.productservicejan25.models.product;
 
 
 public class fakeStoreProductDto {
-
     private long id;
     private String title;
     private String description;
@@ -15,6 +14,7 @@ public class fakeStoreProductDto {
 
     public product toProduct() {
         product product = new product();
+        product.setId(id);
         product.setTitle(title);
         product.setDescription(description);
         product.setPrice(price);
@@ -24,6 +24,7 @@ public class fakeStoreProductDto {
         product.setImageUrl(image);
         return product;
     }
+
 
     public long getId() {
         return id;

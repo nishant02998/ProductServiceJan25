@@ -1,32 +1,27 @@
 package dev.nishant.productservicejan25.models;
 
-public class product {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
-    private int id;
+@Entity
+public class product extends baseModel {
     private String title;
     private String description;
     private double price;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private category category;
     private String imageUrl;
 
     public product() {
     }
 
-    public product(int id, String title, String description, double price, dev.nishant.productservicejan25.models.category category, String imageUrl) {
-        this.id = id;
+    public product(String title, String description, double price, dev.nishant.productservicejan25.models.category category, String imageUrl) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
         this.imageUrl = imageUrl;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -53,11 +48,11 @@ public class product {
         this.price = price;
     }
 
-    public dev.nishant.productservicejan25.models.category getCategory() {
+    public category getCategory() {
         return category;
     }
 
-    public void setCategory(dev.nishant.productservicejan25.models.category category) {
+    public void setCategory(category category) {
         this.category = category;
     }
 
