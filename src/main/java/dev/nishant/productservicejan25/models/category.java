@@ -1,5 +1,6 @@
 package dev.nishant.productservicejan25.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -12,6 +13,7 @@ public class category extends baseModel {
     //already mentioned in product table
     //duplicate
     @OneToMany(mappedBy = "category", cascade = {CascadeType.REMOVE})
+    @JsonIgnore
     private List<product> products;
 
     public category() {

@@ -34,6 +34,13 @@ public class fakeStoreProductService implements productService{
         }
         return products;
     }
+
+    @Override
+    public product createProduct(String title, String description, double price, String imageUrl, String category) {
+        return null;
+    }
+
+
 //    private RestTemplate restTemplate;// Rest Template is use for calling 3rd party API's
 //    public fakeStoreProductService(RestTemplate restTemplate) {
 //        this.restTemplate = restTemplate;

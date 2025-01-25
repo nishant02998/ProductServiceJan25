@@ -1,6 +1,7 @@
 package dev.nishant.productservicejan25.controllers;
 
 import dev.nishant.productservicejan25.dtos.createProductRequestDto;
+import dev.nishant.productservicejan25.exceptions.productNotFoundException;
 import dev.nishant.productservicejan25.models.product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -50,13 +51,23 @@ public class productController {
     }
 
     @GetMapping("/products/{id}")
-    public product getSingleProduct(@PathVariable("id") long id) {
+    public product getSingleProduct(@PathVariable("id") long id) throws productNotFoundException {
+
         return productService.getSingleProduct(id);
     }
 
     @GetMapping("/products")
     public List<product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @PostMapping("/products")
+    public product createProduct(@RequestBody createProductRequestDto productRequestDto) {
+        return productService.createProduct(productRequestDto.getTitle(),
+                                            productRequestDto.getDescription(),
+                                            productRequestDto.getPrice(),
+                                            productRequestDto.getImage(),
+                                            productRequestDto.getCategory());
     }
 
 }
