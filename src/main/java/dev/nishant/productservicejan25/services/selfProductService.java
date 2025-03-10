@@ -5,6 +5,9 @@ import dev.nishant.productservicejan25.exceptions.productNotFoundException;
 import dev.nishant.productservicejan25.models.category;
 import dev.nishant.productservicejan25.models.product;
 import dev.nishant.productservicejan25.repositories.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +37,13 @@ public class selfProductService implements productService {
         //get All products form product table
         List<product> products = productRepository.findAll();
         return products;
+    }
+
+    @Override
+    public Page<product> getPaginatedProducts(int pageNo, int pageSize) {
+        return productRepository.findAll(PageRequest.of(pageNo,
+                                                        pageSize,
+                                                        Sort.by("title").descending().and(Sort.by("price").ascending())));
     }
 
     @Override

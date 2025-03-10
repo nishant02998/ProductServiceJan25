@@ -4,6 +4,7 @@ import dev.nishant.productservicejan25.dtos.createProductRequestDto;
 import dev.nishant.productservicejan25.exceptions.productNotFoundException;
 import dev.nishant.productservicejan25.models.product;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +69,11 @@ public class productController {
                                             productRequestDto.getPrice(),
                                             productRequestDto.getImage(),
                                             productRequestDto.getCategory());
+    }
+
+    @GetMapping("/products/paginated")
+    Page<product> getPaginatedProducts(@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize) {
+        return productService.getPaginatedProducts(pageNo, pageSize);
     }
 
 }

@@ -4,6 +4,7 @@ import dev.nishant.productservicejan25.dtos.createProductRequestDto;
 import dev.nishant.productservicejan25.dtos.fakeStoreProductDto;
 import dev.nishant.productservicejan25.models.category;
 import dev.nishant.productservicejan25.models.product;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class fakeStoreProductService implements productService{
             products.add(productDto.toProduct());
         }
         return products;
+    }
+
+    @Override
+    public Page<product> getPaginatedProducts(int pageNo, int pageSize) {
+        return null;
     }
 
     @Override

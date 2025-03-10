@@ -3,6 +3,8 @@ package dev.nishant.productservicejan25.repositories;
 import dev.nishant.productservicejan25.models.product;
 import dev.nishant.productservicejan25.projections.productWithIdAndPriceProjection;
 import org.hibernate.annotations.DialectOverride;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public interface productRepository extends JpaRepository<product, Long> {
     @Override
     List<product> findAll();
+
+    @Override
+    Page<product> findAll(Pageable pageable);
 
     product save(product product);
 
